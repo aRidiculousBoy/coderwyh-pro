@@ -8,7 +8,6 @@ import '@assets/css/base.css'
 
 // 关闭生产提示
 Vue.config.productionTip = false
-
 Vue.use(Antd)
 
 new Vue({

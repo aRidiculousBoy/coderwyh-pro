@@ -2,7 +2,9 @@ const { resolve } = require('path')
 
 const outputDir = process.env.VUE_APP_OUTPUT_DIR
 const publicPath = process.env.VUE_APP_PUBLIC_PATH
+console.log(publicPath)
 module.exports = {
+  runtimeCompiler: true,
   lintOnSave: false,
   // 开发服务器
   devServer: {

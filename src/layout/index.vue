@@ -3,20 +3,7 @@
     <a-layout id="components-layout-demo-custom-trigger">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div class="logo" />
-        <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
-          <a-menu-item key="1">
-            <a-icon type="user" />
-            <span>nav 1</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <a-icon type="video-camera" />
-            <span>nav 2</span>
-          </a-menu-item>
-          <a-menu-item key="3">
-            <a-icon type="upload" />
-            <span>nav 3</span>
-          </a-menu-item>
-        </a-menu>
+        <sidebar />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -34,7 +21,7 @@
             minHeight: '280px'
           }"
         >
-          Content
+          <router-view></router-view>
         </a-layout-content>
       </a-layout>
     </a-layout>
@@ -42,8 +29,12 @@
 </template>
 
 <script>
+import Sidebar from './sidebar.vue'
 export default {
   name: 'Layout',
+  components: {
+    Sidebar
+  },
   data() {
     return {
       collapsed: false
@@ -53,13 +44,12 @@ export default {
 </script>
 
 <style scoped lang="less">
-.page-layout {
+.page-layout,
+.ant-layout {
   width: 100%;
   height: 100%;
 }
-#components-layout-demo-custom-trigger {
-  height: 100%;
-}
+
 #components-layout-demo-custom-trigger .trigger {
   font-size: 18px;
   line-height: 64px;
