@@ -35,9 +35,19 @@ export default {
   components: {
     Sidebar
   },
+  provide() {
+    return {
+      navigateToHome: this.navigateToHome
+    }
+  },
   data() {
     return {
       collapsed: false
+    }
+  },
+  methods: {
+    navigateToHome() {
+      this.$router.push('/')
     }
   }
 }

@@ -3,7 +3,14 @@ const Layout = () => import('@/layout/index.vue')
 const Workspace = () => import('@views/dashboard/workspace')
 const Analysis = () => import('@views/dashboard/analysis')
 
+// 异常页组件
+const UnAuthorization = () => import('@views/exception/403')
+const NotFound = () => import('@/views/exception/404')
+const ServerError = () => import('@views/exception/500')
+const CommingSoon = () => import('@/views/exception/commingsoon')
+// 用于测试的组件
 const Jser = () => import('@views/test/jser')
+
 // 空布局组件 主要用于给二级路由占位
 const RouteView = {
   render: (h) => h('router-view')
@@ -28,26 +35,12 @@ const routes = [
       {
         name: 'Workspace',
         path: '/dashboard/workspace',
-        redirect: '/dashboard/workspace/test',
-        // component: Workspace,
+        component: Workspace,
         meta: {
           title: '工作台',
           icon: 'smile',
-          // hasSubMenu: false,
-          hasSubMenu: true
-        },
-        children: [
-          {
-            name: 'Tester',
-            path: '/dashboard/workspace/test',
-            component: Workspace,
-            meta: {
-              'title': '测试',
-              icon: 'smile',
-              hasSubMenu: false
-            }
-          }
-        ]
+          hasSubMenu: false
+        }
       },
       {
         name: 'Analysis',
@@ -70,7 +63,49 @@ const routes = [
       title: '异常页',
       icon: 'warning',
       hasSubMenu: true
-    }
+    },
+    children: [
+      {
+        name: '403',
+        path: '/exception/403',
+        component: UnAuthorization,
+        meta: {
+          title: '403',
+          icon: 'lock',
+          hasSubMenu: false
+        }
+      },
+      {
+        name: '404',
+        path: '/exception/404',
+        component: NotFound,
+        meta: {
+          title: '404',
+          icon: 'question-circle',
+          hasSubMenu: false
+        }
+      },
+      {
+        name: '500',
+        path: '/exception/500',
+        component: ServerError,
+        meta: {
+          title: '500',
+          icon: 'close-circle',
+          hasSubMenu: false
+        }
+      },
+      {
+        name: 'CommingSoon',
+        path: '/exception/comming',
+        component: CommingSoon,
+        meta: {
+          title: '敬请期待',
+          icon: 'close-circle',
+          hasSubMenu: false
+        }
+      }
+    ]
   },
   {
     name: 'Test',

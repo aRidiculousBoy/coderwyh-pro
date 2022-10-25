@@ -3,6 +3,8 @@
     <a-menu
       :default-selected-keys="defaultSelectKeys"
       :default-open-keys="defaultOpenKeys"
+      :selected-keys="currentKeys"
+      :open-keys.sync="openKeys"
       mode="inline"
       theme="dark"
       :inline-collapsed="collapsed"
@@ -38,16 +40,21 @@ export default {
     const routes = generateRoutes(this.$router.options.routes)
     const defaultSelectKeys = []
     const defaultOpenKeys = []
+    const currentKeys = []
+    const openKeys = []
     return {
       collapsed: false,
       routes,
       defaultSelectKeys,
-      defaultOpenKeys
+      defaultOpenKeys,
+      currentKeys,
+      openKeys
     }
   },
   components: {
     SubMenu
   },
+  computed: {},
   methods: {
     handleMenuClick(path) {
       this.$router.push(path)
@@ -57,10 +64,13 @@ export default {
     $route: {
       handler(route) {
         const path = route.path
+        this.currentKeys = [path]
         this.defaultSelectKeys = [path]
-        this.defaultOpenKeys = route.matched
+        const openKeys = route.matched
           .slice(0, route.matched.length - 1)
           .map((item) => item.path)
+        this.defaultOpenKeys = openKeys
+        this.openKeys = openKeys
       },
       immediate: true
     }
