@@ -8,6 +8,11 @@ const UnAuthorization = () => import('@views/exception/403')
 const NotFound = () => import('@/views/exception/404')
 const ServerError = () => import('@views/exception/500')
 const CommingSoon = () => import('@/views/exception/commingsoon')
+
+// 个人页面组件
+const Center = () => import('@views/profile/center')
+const Settings = () => import('@views/profile/settings')
+
 // 用于测试的组件
 const Jser = () => import('@views/test/jser')
 
@@ -102,6 +107,39 @@ const routes = [
         meta: {
           title: '敬请期待',
           icon: 'close-circle',
+          hasSubMenu: false
+        }
+      }
+    ]
+  },
+  {
+    name: 'Profile',
+    path: '/profile',
+    redirect: '/profile/center',
+    component: Layout,
+    meta: {
+      title: '个人页面',
+      icon: 'user',
+      hasSubMenu: true
+    },
+    children: [
+      {
+        name: 'UserCenter',
+        path: '/profile/center',
+        component: Center,
+        meta: {
+          title: '个人中心',
+          icon: 'fire',
+          hasSubMenu: false
+        }
+      },
+      {
+        name: 'UserSettings',
+        path: '/profile/settings',
+        component: Settings,
+        meta: {
+          title: '个人设置',
+          icon: 'setting',
           hasSubMenu: false
         }
       }
