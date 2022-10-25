@@ -28,12 +28,26 @@ const routes = [
       {
         name: 'Workspace',
         path: '/dashboard/workspace',
-        component: Workspace,
+        redirect: '/dashboard/workspace/test',
+        // component: Workspace,
         meta: {
           title: '工作台',
           icon: 'smile',
-          hasSubMenu: false
-        }
+          // hasSubMenu: false,
+          hasSubMenu: true
+        },
+        children: [
+          {
+            name: 'Tester',
+            path: '/dashboard/workspace/test',
+            component: Workspace,
+            meta: {
+              'title': '测试',
+              icon: 'smile',
+              hasSubMenu: false
+            }
+          }
+        ]
       },
       {
         name: 'Analysis',

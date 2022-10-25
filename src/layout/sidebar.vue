@@ -41,7 +41,8 @@ export default {
     return {
       collapsed: false,
       routes,
-      defaultSelectKeys
+      defaultSelectKeys,
+      defaultOpenKeys
     }
   },
   components: {
@@ -57,8 +58,9 @@ export default {
       handler(route) {
         const path = route.path
         this.defaultSelectKeys = [path]
-        const parentPath = route.matched[0].path
-        this.defaultOpenKeys = [parentPath]
+        this.defaultOpenKeys = route.matched
+          .slice(0, route.matched.length - 1)
+          .map((item) => item.path)
       },
       immediate: true
     }
