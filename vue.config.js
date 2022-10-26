@@ -13,7 +13,8 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: false
-    }
+    },
+    hot: true
   },
   configureWebpack: {
     resolve: {

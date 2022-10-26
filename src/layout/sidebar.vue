@@ -7,7 +7,7 @@
       :open-keys.sync="openKeys"
       mode="inline"
       theme="dark"
-      :inline-collapsed="collapsed"
+      :inline-collapsed="false"
       :forceSubMenuRender="true"
     >
       <template v-for="menu in routes">
@@ -36,6 +36,12 @@ import SubMenu from './submenu.vue'
 
 export default {
   name: 'Sidebar',
+  props: {
+    collapsed: {
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     const routes = generateRoutes(this.$router.options.routes)
     const defaultSelectKeys = []
@@ -43,7 +49,6 @@ export default {
     const currentKeys = []
     const openKeys = []
     return {
-      collapsed: false,
       routes,
       defaultSelectKeys,
       defaultOpenKeys,
@@ -73,6 +78,16 @@ export default {
         this.openKeys = openKeys
       },
       immediate: true
+    },
+    collapsed(value) {
+      if (value) {
+        this.openKeys = []
+      } else {
+        const openKeys = this.$route.matched
+          .slice(0, this.$route.matched.length - 1)
+          .map((item) => item.path)
+        this.openKeys = openKeys
+      }
     }
   }
 }

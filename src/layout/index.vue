@@ -3,7 +3,7 @@
     <a-layout id="components-layout-demo-custom-trigger">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div class="logo" />
-        <sidebar />
+        <sidebar :collapsed="collapsed"/>
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -36,7 +36,8 @@ export default {
   },
   provide() {
     return {
-      navigateToHome: this.navigateToHome
+      navigateToHome: this.navigateToHome,
+      collapsed: () => this.collapsed
     }
   },
   data() {
