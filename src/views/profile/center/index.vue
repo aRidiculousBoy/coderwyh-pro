@@ -4,7 +4,7 @@
       <a-card :bordered="false" style="width: 360px">
         <a-result title="a Ridiculous Boy" sub-title="疫情快快结束">
           <template #icon>
-            <a-avatar :size="128" :src="remoteAvatarSrc" />
+            <a-avatar :size="128" :src="kenanAvatar" />
           </template>
         </a-result>
         <a-divider />
@@ -59,8 +59,12 @@
               <article-item v-bind="article"></article-item>
             </template>
           </div>
-          <p v-if="currentTab === 'item'">item</p>
-          <p v-if="currentTab === 'app'">app</p>
+          <div v-if="currentTab === 'project'">
+            <a-space size="middle"
+              ><template v-for="project in projects">
+                <project-item v-bind="project"></project-item> </template
+            ></a-space>
+          </div>
         </a-spin>
       </a-card>
     </div>
@@ -69,16 +73,23 @@
 
 <script>
 import ArticleItem from './components/articleitem'
+import ProjectItem from './components/projectitem'
+
+import kenanAvatar from '@/assets/images/kenan.jpg'
+
+import lodashCover from '@/assets/images/lodash.png'
+import webpackCover from '@/assets/images/webpack.png'
+import gitCover from '@/assets/images/git.png'
+
+
 
 export default {
   name: 'Center',
   components: {
-    ArticleItem
+    ArticleItem,
+    ProjectItem
   },
   data() {
-    const remoteAvatarSrc =
-      'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fgss0.baidu.com%2F9fo3dSag_xI4khGko9WTAnF6hhy%2Fzhidao%2Fpic%2Fitem%2Ff3d3572c11dfa9ec70ac493667d0f703918fc115.jpg&refer=http%3A%2F%2Fgss0.baidu.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1669291008&t=1a36a65cc42726b546ce79ff7e42a239'
-
     const rngMotto = 'RNG'
     const rngLogoSrc =
       'https://gimg3.baidu.com/rel/src=https%3A%2F%2Fbkimg.cdn.bcebos.com%2Fsmart%2F94cad1c8a786c917e23977d9c73d70cf3bc75713-bkimg-process%2Cv_1%2Crw_1%2Crh_1%2Cmaxl_700&refer=http%3A%2F%2Fwww.baidu.com&app=2010&size=f200,200&n=0&g=0n&q=100&fmt=auto?sec=1666803600&t=350d5e20e057aedccff020fdf3834acd'
@@ -113,12 +124,8 @@ export default {
         tab: '文章'
       },
       {
-        key: 'item',
+        key: 'project',
         tab: '项目'
-      },
-      {
-        key: 'app',
-        tab: '应用'
       }
     ]
     const currentTab = tabList[0].key
@@ -126,90 +133,97 @@ export default {
     // 文章
     const articles = []
 
+    // 项目
+    const projects = []
+
     // 控制spin的状态
     const spinning = true
     return {
-      remoteAvatarSrc,
+      kenanAvatar,
       technicalAbilities,
       teams,
       tabList,
       currentTab,
       articles,
+      projects,
       spinning
     }
   },
   methods: {
     handleTabChange(key) {
       this.currentTab = key
-      if (key == 'article') {
-        this.articles = []
-        this.spinning = true
-        setTimeout(() => {
-          this.articles = [
-            {
-              title: 'Node.js',
-              descTags: ['nodejs', 'v8', 'libuv', 'chrome', 'asynchronize io'],
-              description:
-                '如果你是一个前端程序员，你不懂得像 PHP、Python 或 Ruby 等动态编程语言，然后你想创建自己的服务，那么 Node.js 是一个非常好的选择。Node.js 是运行在服务端的 JavaScript，如果你熟悉 Javascript，那么你将会很容易的学会 Node.js。当然，如果你是后端程序员，想部署一些高性能的服务，那么学习 Node.js 也是一个非常好的选择！',
-              author: '洪七公',
-              url: 'https://github.com/nodejs',
-              publishDate: '2020-08-08 16:40',
-              star: 100,
-              like: 666,
-              comment: 888,
-              cover: 'https://vui-design.github.io/vui-design-pro/images/apps/nodejs.png'
-            },
-            {
-              title: 'Webpack',
-              descTags: ['webpack', '构建工具', '工程化', '现代打包工具'],
-              description:
-                '本质上，Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。当 Webpack 处理应用程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 Bundle。',
-              author: '欧阳锋',
-              url: 'https://github.com/webpack',
-              publishDate: '2020-08-08 16:40',
-              star: 100,
-              like: 666,
-              comment: 888,
-              cover: 'https://vui-design.github.io/vui-design-pro/images/apps/webpack.png'
-            }
-          ]
-          this.spinning = false
-        }, 500)
+      this.spinning = true
+      if (key === 'article') {
+        this.getArticles()
+      } else if (key === 'project') {
+        this.getProjects()
       }
+    },
+    getArticles() {
+      this.articles = []
+      setTimeout(() => {
+        this.articles = [
+          {
+            title: 'Node.js',
+            descTags: ['nodejs', 'v8', 'libuv', 'chrome', 'asynchronize io'],
+            description:
+              '如果你是一个前端程序员，你不懂得像 PHP、Python 或 Ruby 等动态编程语言，然后你想创建自己的服务，那么 Node.js 是一个非常好的选择。Node.js 是运行在服务端的 JavaScript，如果你熟悉 Javascript，那么你将会很容易的学会 Node.js。当然，如果你是后端程序员，想部署一些高性能的服务，那么学习 Node.js 也是一个非常好的选择！',
+            author: '洪七公',
+            url: 'https://github.com/nodejs',
+            publishDate: '2020-08-08 16:40',
+            star: 100,
+            like: 666,
+            comment: 888,
+            cover: 'https://vui-design.github.io/vui-design-pro/images/apps/nodejs.png'
+          },
+          {
+            title: 'Webpack',
+            descTags: ['webpack', '构建工具', '工程化', '现代打包工具'],
+            description:
+              '本质上，Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。当 Webpack 处理应用程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 Bundle。',
+            author: '欧阳锋',
+            url: 'https://github.com/webpack',
+            publishDate: '2020-08-08 16:40',
+            star: 100,
+            like: 666,
+            comment: 888,
+            cover: 'https://vui-design.github.io/vui-design-pro/images/apps/webpack.png'
+          }
+        ]
+        this.spinning = false
+      }, 500)
+    },
+    getProjects() {
+      this.projects = []
+      setTimeout(() => {
+        this.projects = [
+          {
+            title: 'Lodash',
+            coverSource: lodashCover,
+            description: 'Lodash 是一个一致性、模块化、高性能的 JavaScript 实用工具库。',
+            avatarSource: lodashCover
+          },
+          {
+            title: 'Webpack',
+            coverSource: webpackCover,
+            description:
+              '本质上，webpack 是一个用于现代 JavaScript 应用程序的 静态模块打包工具。',
+            avatarSource: webpackCover
+          },
+          {
+            title: 'Git',
+            coverSource: gitCover,
+            description:
+              'git是一个分布式版本控制软件，最初由林纳斯·托瓦兹创作，于2005年以GPL许可协议发布。',
+            avatarSource: gitCover
+          }
+        ]
+        this.spinning = false
+      }, 500)
     }
   },
   created() {
-    setTimeout(() => {
-      this.articles = [
-        {
-          title: 'Node.js',
-          descTags: ['nodejs', 'v8', 'libuv', 'chrome', 'asynchronize io'],
-          description:
-            '如果你是一个前端程序员，你不懂得像 PHP、Python 或 Ruby 等动态编程语言，然后你想创建自己的服务，那么 Node.js 是一个非常好的选择。Node.js 是运行在服务端的 JavaScript，如果你熟悉 Javascript，那么你将会很容易的学会 Node.js。当然，如果你是后端程序员，想部署一些高性能的服务，那么学习 Node.js 也是一个非常好的选择！',
-          author: '洪七公',
-          url: 'https://github.com/nodejs',
-          publishDate: '2020-08-08 16:40',
-          star: 100,
-          like: 666,
-          comment: 888,
-          cover: 'https://vui-design.github.io/vui-design-pro/images/apps/nodejs.png'
-        },
-        {
-          title: 'Webpack',
-          descTags: ['webpack', '构建工具', '工程化', '现代打包工具'],
-          description:
-            '本质上，Webpack 是一个现代 JavaScript 应用程序的静态模块打包器。当 Webpack 处理应用程序时，它会递归地构建一个依赖关系图，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 Bundle。',
-          author: '欧阳锋',
-          url: 'https://github.com/webpack',
-          publishDate: '2020-08-08 16:40',
-          star: 100,
-          like: 666,
-          comment: 888,
-          cover: 'https://vui-design.github.io/vui-design-pro/images/apps/webpack.png'
-        }
-      ]
-      this.spinning = false
-    }, 500)
+    this.getArticles()
   }
 }
 </script>
