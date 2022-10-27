@@ -72,16 +72,14 @@
 </template>
 
 <script>
-import ArticleItem from './components/articleitem'
-import ProjectItem from './components/projectitem'
+import ArticleItem from './components/articleItem'
+import ProjectItem from './components/projectItem'
 
 import kenanAvatar from '@/assets/images/kenan.jpg'
 
 import lodashCover from '@/assets/images/lodash.png'
 import webpackCover from '@/assets/images/webpack.png'
 import gitCover from '@/assets/images/git.png'
-
-
 
 export default {
   name: 'Center',
