@@ -1,24 +1,27 @@
 # coderwyh-pro
 
-## Project setup
+### 在线预览
+
+[demo](http://119.91.214.15:8080/)
+
+### 开发
+
 ```
-npm install
+# 克隆项目
+git clone git@github.com:aRidiculousBoy/coderwyh-pro.git
+
+# 切入到项目目录
+cd coderwyh-pro
+
+# 依赖安装
+npm i
+
+# 启动本地开发服务器
+npm run dev
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
+### 打包
+```tex
+# 生产环境打包
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
