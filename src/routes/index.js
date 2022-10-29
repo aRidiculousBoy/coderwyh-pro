@@ -13,6 +13,9 @@ const CommingSoon = () => import('@/views/exception/commingsoon')
 const Center = () => import('@views/profile/center')
 const Settings = () => import('@views/profile/settings')
 
+// 列表页组件
+const QueryTable = () => import('@views/list/table')
+
 // 用于测试的组件
 const Jser = () => import('@views/test/jser')
 
@@ -55,6 +58,29 @@ const routes = [
           title: '分析页',
           icon: 'pie-chart',
           hasSubMenu: false
+        }
+      }
+    ]
+  },
+  {
+    name: 'List',
+    path: '/list',
+    component: Layout,
+    redirect: '/list/table',
+    meta: {
+      title: '列表页',
+      hasSubMenu: true,
+      icon: 'windows'
+    },
+    children: [
+      {
+        name: 'QueryTable',
+        path: '/list/table',
+        component: QueryTable,
+        meta: {
+          title: '查询表格',
+          hasSubMenu: false,
+          icon: 'ordered-list'
         }
       }
     ]
