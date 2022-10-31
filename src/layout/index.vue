@@ -3,7 +3,7 @@
     <a-layout id="components-layout-demo-custom-trigger">
       <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
         <div class="logo" />
-        <sidebar :collapsed="collapsed"/>
+        <sidebar :collapsed="collapsed" />
       </a-layout-sider>
       <a-layout>
         <a-layout-header style="background: #fff; padding: 0">
@@ -12,6 +12,7 @@
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="() => (collapsed = !collapsed)"
           />
+          <breadcrumbs />
         </a-layout-header>
         <a-layout-content
           :style="{
@@ -29,10 +30,13 @@
 
 <script>
 import Sidebar from './sidebar.vue'
+import Breadcrumbs from './breadcrumbs.vue'
+
 export default {
   name: 'Layout',
   components: {
-    Sidebar
+    Sidebar,
+    Breadcrumbs
   },
   provide() {
     return {
@@ -76,5 +80,10 @@ export default {
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+}
+
+.ant-layout-header {
+  display: flex;
+  align-items: center;
 }
 </style>

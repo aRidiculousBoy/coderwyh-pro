@@ -175,7 +175,7 @@ const routes = [
     name: 'Test',
     path: '/test',
     component: Layout,
-    redirect: '/test',
+    redirect: '/tester',
     meta: {
       title: 'Jser',
       hasSubMenu: false,
@@ -183,7 +183,7 @@ const routes = [
     },
     children: [
       {
-        path: '/test',
+        path: '/tester',
         component: Jser
       }
     ]
