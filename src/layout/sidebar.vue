@@ -33,6 +33,7 @@
 <script>
 import { generateRoutes } from '@/utils/utils.js'
 import SubMenu from './submenu.vue'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Sidebar',
@@ -43,13 +44,11 @@ export default {
     }
   },
   data() {
-    const routes = generateRoutes(this.$router.options.routes)
     const defaultSelectKeys = []
     const defaultOpenKeys = []
     const currentKeys = []
     const openKeys = []
     return {
-      routes,
       defaultSelectKeys,
       defaultOpenKeys,
       currentKeys,
@@ -59,11 +58,15 @@ export default {
   components: {
     SubMenu
   },
-  computed: {},
+  computed: {
+    ...mapState({
+      routes: (state) => generateRoutes(state.permission.routers)
+    })
+  },
   methods: {
     handleMenuClick(path) {
       this.$router.push(path)
-    }
+    },
   },
   watch: {
     $route: {

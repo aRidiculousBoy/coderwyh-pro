@@ -19,12 +19,17 @@ const QueryTable = () => import('@views/list/table')
 // 用于测试的组件
 const Jser = () => import('@views/test/jser')
 
+// 权限测试组件
+const adminOnly = () => import('@views/permission/adminOnly')
+const opOnly = () => import('@views/permission/opOnly')
+const adminAndOp = () => import('@views/permission/adminAndOp')
+
 // 空布局组件 主要用于给二级路由占位
 const RouteView = {
   render: (h) => h('router-view')
 }
 
-const routes = [
+export const constantRouterMap = [
   {
     path: '/',
     redirect: '/dashboard'
@@ -61,7 +66,10 @@ const routes = [
         }
       }
     ]
-  },
+  }
+]
+
+export const asyncRouterMap = [
   {
     name: 'List',
     path: '/list',
@@ -187,7 +195,58 @@ const routes = [
         component: Jser
       }
     ]
+  },
+  // 权限测试
+  {
+    name: 'Permission',
+    path: '/permission',
+    component: Layout,
+    redirect: '/tester',
+    meta: {
+      title: '权限测试',
+      hasSubMenu: true,
+      icon: 'filter'
+    },
+    children: [
+      {
+        name: 'AdminOnly',
+        path: '/permission/admin-only',
+        component: adminOnly,
+        meta: {
+          title: '管理员专享',
+          hasSubMenu: false,
+          icon: 'user',
+          roles: ['admin']
+        }
+      },
+      {
+        name: 'OpOnly',
+        path: '/permission/op-only',
+        component: opOnly,
+        meta: {
+          title: '运营人员专享',
+          hasSubMenu: false,
+          icon: 'build',
+          roles: ['op']
+        }
+      },
+      {
+        name: 'AdminAndOp',
+        path: '/permission/admin-op',
+        component: adminAndOp,
+        meta: {
+          title: '管理和运营共享',
+          hasSubMenu: false,
+          icon: 'share-alt',
+          roles: ['admin', 'op']
+        }
+      }
+    ]
+  },
+  {
+    path: '*',
+    redirect: '/exception/404'
   }
 ]
 
-export default routes
+export default constantRouterMap

@@ -32,6 +32,7 @@
 import Sidebar from './sidebar.vue'
 import Breadcrumbs from './breadcrumbs.vue'
 
+
 export default {
   name: 'Layout',
   components: {

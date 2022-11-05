@@ -29,3 +29,12 @@ export function getRouteByPath(routes, path) {
   }
   return target
 }
+
+// 路由权限校验函数
+export function hasPermission(roles, route) {
+  if (route.meta && route.meta.roles) {
+    return roles.some((role) => route.meta.roles.includes(role))
+  } else {  
+    return true
+  }
+}

@@ -15,7 +15,6 @@ export default {
   name: 'Breadcrumbs',
   computed: {
     breadItems() {
-      console.log(this.$route.matched)
       const items = [
         {
           title: '首页',
@@ -30,7 +29,6 @@ export default {
           })
         }
       })
-      console.log(items)
       return items
     }
   }
