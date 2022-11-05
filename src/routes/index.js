@@ -20,9 +20,10 @@ const QueryTable = () => import('@views/list/table')
 const Jser = () => import('@views/test/jser')
 
 // 权限测试组件
-const adminOnly = () => import('@views/permission/adminOnly')
-const opOnly = () => import('@views/permission/opOnly')
-const adminAndOp = () => import('@views/permission/adminAndOp')
+const AdminOnly = () => import('@views/permission/adminOnly')
+const OpOnly = () => import('@views/permission/opOnly')
+const AdminAndOp = () => import('@views/permission/adminAndOp')
+const All = () => import('@views/permission/all')
 
 // 空布局组件 主要用于给二级路由占位
 const RouteView = {
@@ -211,7 +212,7 @@ export const asyncRouterMap = [
       {
         name: 'AdminOnly',
         path: '/permission/admin-only',
-        component: adminOnly,
+        component: AdminOnly,
         meta: {
           title: '管理员专享',
           hasSubMenu: false,
@@ -222,7 +223,7 @@ export const asyncRouterMap = [
       {
         name: 'OpOnly',
         path: '/permission/op-only',
-        component: opOnly,
+        component: OpOnly,
         meta: {
           title: '运营人员专享',
           hasSubMenu: false,
@@ -233,12 +234,22 @@ export const asyncRouterMap = [
       {
         name: 'AdminAndOp',
         path: '/permission/admin-op',
-        component: adminAndOp,
+        component: AdminAndOp,
         meta: {
           title: '管理和运营共享',
           hasSubMenu: false,
           icon: 'share-alt',
           roles: ['admin', 'op']
+        }
+      },
+      {
+        name: 'All',
+        path: '/permission/all',
+        component: All,
+        meta: {
+          title: '所有人共享',
+          hasSubMenu: false,
+          icon: 'global'
         }
       }
     ]

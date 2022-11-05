@@ -19,9 +19,6 @@ const permission = {
         const { roles } = data
         // 生成可访问的路由
         const accessedRouters = asyncRouterMap.filter((v) => {
-          // 这边假设admin拥有所有权限的角色
-          if (roles.includes('admin')) return true
-          console.log(roles)
           if (hasPermission(roles, v)) {
             if (v.children && v.children.length > 0) {
               v.children = v.children.filter((child) => {
