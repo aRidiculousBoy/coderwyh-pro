@@ -1,12 +1,11 @@
 <template>
-  <div class="page-workspace">
-      workspace
-  </div>
+  <div class="page-workspace">workspace</div>
 </template>
 
 <script>
 export default {
-  name: 'Workspace'
+  name: 'Workspace',
+  created() {}
 }
 </script>
 
