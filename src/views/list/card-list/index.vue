@@ -1,12 +1,16 @@
 <template>
   <div class="card-list">
-      <a-row :gutter="[16,32]" v-for="row in rowLength" :key="row">
-        <a-col class="gutter-row" :span="6" v-for="item in (webList.slice((row - 1) * 4,4 * row))">
-          <div class="gutter-box">
-            <web-card v-bind="item" :key="item.name"></web-card>
-          </div>
-        </a-col>
-      </a-row>
+    <a-spin tip="Loading..." :spinning="loading">
+      <div class="spin-content">
+        <a-row :gutter="[16, 32]" v-for="row in rowLength" :key="row">
+          <a-col class="gutter-row" :span="6" v-for="item in (webList.slice((row - 1) * 4, 4 * row))">
+            <div class="gutter-box">
+              <web-card v-bind="item" :key="item.name"></web-card>
+            </div>
+          </a-col>
+        </a-row>
+      </div>
+    </a-spin>
   </div>
 </template>
 
@@ -182,14 +186,6 @@ export default {
   padding: 24px;
 }
 
-.spining {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
 
-.spin-content {
-  padding: 24px
-}
+
 </style>
