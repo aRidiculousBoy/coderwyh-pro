@@ -8,6 +8,7 @@
       :loading="loading"
       @change="handleChange"
       :row-selection="rowSelection"
+      v-bind="options"
     >
       <div v-for="item in slotCols" :slot="item.slot" slot-scope="scope" :key="item.slot">
         <slot :name="item.slot" :[item.slot]="scope">{{ scope }}</slot>
@@ -23,6 +24,7 @@
       :pagination="pagination"
       :loading="loading"
       @change="handleChange"
+      v-bind="options"
     >
       <div v-for="item in slotCols" :slot="item.slot" slot-scope="scope" :key="item.slot">
         <slot :name="item.slot" :[item.slot]="scope">{{ scope }}</slot>
@@ -56,6 +58,10 @@ export default {
       default: false
     },
     rowSelection: {
+      type: Object,
+      default: () => ({})
+    },
+    options: {
       type: Object,
       default: () => ({})
     }

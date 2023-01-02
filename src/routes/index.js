@@ -15,15 +15,17 @@ const Settings = () => import('@views/profile/settings')
 
 // 列表页组件
 const QueryTable = () => import('@views/list/table')
+const CardList = () => import('@views/list/card-list')
 
 // 用于测试的组件
 const Jser = () => import('@views/test/jser')
 
 // 权限测试组件
-const AdminOnly = () => import('@views/permission/adminOnly')
-const OpOnly = () => import('@views/permission/opOnly')
-const AdminAndOp = () => import('@views/permission/adminAndOp')
+const AdminOnly = () => import('@views/permission/admin-only')
+const OpOnly = () => import('@views/permission/op-only')
+const AdminAndOp = () => import('@views/permission/admin-and-op')
 const All = () => import('@views/permission/all')
+
 
 // 空布局组件 主要用于给二级路由占位
 const RouteView = {
@@ -90,6 +92,16 @@ export const asyncRouterMap = [
           title: '查询表格',
           hasSubMenu: false,
           icon: 'ordered-list'
+        }
+      },
+      {
+        name: 'Card-List',
+        path: '/list/card-list',
+        component: CardList,
+        meta: {
+          title: '卡片列表',
+          hasSubMenu: false,
+          icon: 'appstore'
         }
       }
     ]

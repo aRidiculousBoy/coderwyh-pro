@@ -1,76 +1,78 @@
 <template>
   <div class="query-table">
-    <a-card>
-      <form-model v-bind="formModelConfig" :formData="formData" ref="formModelRef">
-        <template slot="action">
-          <a-space>
-            <a-button @click="handleReset">重置</a-button>
-            <a-button type="primary" @click="handleSearch">查询</a-button>
-          </a-space>
-        </template>
-      </form-model>
-    </a-card>
-    <a-card style="margin-top: 32px" class="table-content">
-      <div class="table-header">
-        <div class="title">查询表格</div>
-        <div class="action">
-          <a-space>
-            <div class="refresh" @click="handleRefresh">
-              <a-tooltip>
-                <template slot="title"> 刷新 </template>
-                <a-icon type="sync" :style="{ fontSize: '16px' }"></a-icon>
-              </a-tooltip>
-            </div>
-            <a-divider type="vertical"></a-divider>
+    <div class="coderwyh-pro-body">
+      <a-card>
+        <form-model v-bind="formModelConfig" :formData="formData" ref="formModelRef">
+          <template slot="action">
             <a-space>
-              <a-button icon="arrow-down" @click="handleExport">导出</a-button>
-              <a-button type="primary" icon="plus" @click="handleAdd">添加</a-button>
+              <a-button @click="handleReset">重置</a-button>
+              <a-button type="primary" @click="handleSearch">查询</a-button>
             </a-space>
-          </a-space>
+          </template>
+        </form-model>
+      </a-card>
+      <a-card style="margin-top: 32px" class="table-content">
+        <div class="table-header">
+          <div class="title">查询表格</div>
+          <div class="action">
+            <a-space>
+              <div class="refresh" @click="handleRefresh">
+                <a-tooltip>
+                  <template slot="title"> 刷新 </template>
+                  <a-icon type="sync" :style="{ fontSize: '16px' }"></a-icon>
+                </a-tooltip>
+              </div>
+              <a-divider type="vertical"></a-divider>
+              <a-space>
+                <a-button icon="arrow-down" @click="handleExport">导出</a-button>
+                <a-button type="primary" icon="plus" @click="handleAdd">添加</a-button>
+              </a-space>
+            </a-space>
+          </div>
         </div>
-      </div>
-      <a-alert
-        :message="`已选择${rowSelection.selectedRowKeys.length}项 服务调用总计${total}万次`"
-        type="info"
-        show-icon
-      ></a-alert>
-      <h-table
-        v-bind="tableConfig"
-        :data="data"
-        :loading="loading"
-        @change="handleChange"
-        :rowSelection="rowSelection"
-      >
-        <div slot="count" slot-scope="{ count }">
-          {{ count + '万' }}
-        </div>
-        <div slot="status" slot-scope="{ status }">
-          <a-badge dot :status="status | stateTypeFilter"> </a-badge
-          ><span> {{ status | stateFilter }}</span>
-        </div>
-        <div slot="action" slot-scope="{ scope }">
-          <a-space>
-            <a @click="handleEditRecord(scope)">编辑</a>
-            <a-divider type="vertical"></a-divider>
-            <a-popconfirm
-              title="确定删除当前记录嘛？"
-              ok-text="确定"
-              cancel-text="取消"
-              @confirm="handleDelete"
-            >
-              <a href="#">删除</a>
-            </a-popconfirm>
-          </a-space>
-        </div>
-      </h-table>
-    </a-card>
-    <h-modal
-      :title="modalTitle"
-      v-bind="modalConfig"
-      ref="hModalRef"
-      @cancel="handleCancel"
-      @confirm="handleConfirm"
-    ></h-modal>
+        <a-alert
+          :message="`已选择${rowSelection.selectedRowKeys.length}项 服务调用总计${total}万次`"
+          type="info"
+          show-icon
+        ></a-alert>
+        <h-table
+          v-bind="tableConfig"
+          :data="data"
+          :loading="loading"
+          @change="handleChange"
+          :rowSelection="rowSelection"
+        >
+          <div slot="count" slot-scope="{ count }">
+            {{ count + '万' }}
+          </div>
+          <div slot="status" slot-scope="{ status }">
+            <a-badge dot :status="status | stateTypeFilter"> </a-badge
+            ><span> {{ status | stateFilter }}</span>
+          </div>
+          <div slot="action" slot-scope="{ scope }">
+            <a-space>
+              <a @click="handleEditRecord(scope)">编辑</a>
+              <a-divider type="vertical"></a-divider>
+              <a-popconfirm
+                title="确定删除当前记录嘛？"
+                ok-text="确定"
+                cancel-text="取消"
+                @confirm="handleDelete"
+              >
+                <a href="#">删除</a>
+              </a-popconfirm>
+            </a-space>
+          </div>
+        </h-table>
+      </a-card>
+      <h-modal
+        :title="modalTitle"
+        v-bind="modalConfig"
+        ref="hModalRef"
+        @cancel="handleCancel"
+        @confirm="handleConfirm"
+      ></h-modal>
+    </div>
   </div>
 </template>
 
@@ -101,10 +103,10 @@ export default {
       desc: ''
     }
     const modalFormData = {
-      name: '',
-      desc: '',
-      count: '',
-      lastSchedule: ''
+      name: undefined,
+      desc: undefined,
+      count: undefined,
+      lastSchedule: undefined
     }
     const isEdit = false
     modalConfig.formModelConfig.formData = modalFormData
@@ -142,7 +144,8 @@ export default {
             desc: '这是一段描述',
             count: Math.ceil(Math.random() * 1000),
             status: ['running', 'offline', 'online'][Math.floor(Math.random() * 3)],
-            lastSchedule: '2022-10-28'
+            lastSchedule: '2022-10-28',
+            index: i + 1
           })
         }
         this.data = ret

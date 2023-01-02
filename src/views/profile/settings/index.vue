@@ -11,7 +11,7 @@
           <a-menu-item v-for="setting in settings" :key="setting">{{ setting }}</a-menu-item>
         </a-menu>
       </a-layout-sider>
-      <a-layout-content :style="{ padding: '0 24px', minHeight: '280px' }">
+      <a-layout-content class="content" style="padding: 0 50px">
         <component :is="currentComponent"></component>
       </a-layout-content>
     </a-layout>
@@ -25,10 +25,10 @@ import SecureSettings from './components/secureSettings'
 import Notification from './components/notification'
 
 const componentsMap = {
-  基本设置: DefaultSettings,
-  安全设置: SecureSettings,
-  账号绑定: AccountBindings,
-  消息通知: Notification
+  '基本设置': DefaultSettings,
+  '安全设置': SecureSettings,
+  '账号绑定': AccountBindings,
+  '消息通知': Notification
 }
 
 export default {
@@ -51,7 +51,14 @@ export default {
 </script>
 
 <style scoped lang="less">
+.page-settings {
+  padding: 32px;
+}
 /deep/.ant-card-body {
   padding: 16px 0;
+}
+
+.content {
+  padding-left: 32px !important;
 }
 </style>

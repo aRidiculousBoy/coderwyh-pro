@@ -1,6 +1,7 @@
 <template>
   <div class="jser">
-    <a-card>
+    <div class="coderwyh-pro-body">
+      <a-card>
       <form-model v-bind="formModelConfig" :formData="formData" ref="formModelRef"></form-model>
       <a-button @click="handleSubmit">提交</a-button>
     </a-card>
@@ -15,6 +16,7 @@
         :rowSelection="rowSelection"
       ></h-table>
     </a-card>
+    </div>
   </div>
 </template>
 

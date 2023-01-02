@@ -1,72 +1,74 @@
 <template>
   <div class="page-center">
-    <div class="user-card">
-      <a-card :bordered="false" style="width: 360px">
-        <a-result title="a Ridiculous Boy" sub-title="疫情快快结束">
-          <template #icon>
-            <a-avatar :size="128" :src="kenanAvatar" />
-          </template>
-        </a-result>
-        <a-divider />
-        <div class="professional-info">
-          <div>
-            <a-space>
-              <a-icon type="profile" :style="{ fontSize: '14px' }" />
-              <span>前端开发实习生</span></a-space
-            >
-          </div>
-          <div>
-            <a-space>
-              <a-icon type="compass" :style="{ fontSize: '14x' }" />
-              <span>电魂网络-发行线-技术运营中心-运营开发部-前端开发组</span></a-space
-            >
-          </div>
-          <div>
-            <a-space>
-              <a-icon type="environment" :style="{ fontSize: '14px' }" />
-              <span>浙江省杭州市</span></a-space
-            >
-          </div>
-        </div>
-        <a-divider />
-        <div class="skill-info">
-          <a-tag v-for="item in technicalAbilities" style="margin: 4px" :key="item">{{
-            item
-          }}</a-tag>
-          <a-button size="small">+</a-button>
-        </div>
-        <a-divider />
-        <div class="team-work">
-          <div class="team-work-item" v-for="team in teams">
-            <a-space>
-              <a-avatar :size="32" :src="team.logo"></a-avatar>
-              <span>{{ team.title }}</span>
-            </a-space>
-          </div>
-        </div>
-      </a-card>
-    </div>
-    <div class="light-card">
-      <a-card
-        :bordered="false"
-        :tab-list="tabList"
-        :active-tab-key="currentTab"
-        @tabChange="handleTabChange"
-      >
-        <a-spin tip="加载中" :spinning="spinning">
-          <div v-if="currentTab === 'article'">
-            <template v-for="article in articles">
-              <article-item v-bind="article"></article-item>
+    <div class="coderwyh-pro-body">
+      <div class="user-card">
+        <a-card :bordered="false" style="width: 360px">
+          <a-result title="a Ridiculous Boy" sub-title="我曾难自拔于世界之大，也沉迷于其中梦话">
+            <template #icon>
+              <a-avatar :size="128" :src="kenanAvatar" />
             </template>
+          </a-result>
+          <a-divider />
+          <div class="professional-info">
+            <div>
+              <a-space>
+                <a-icon type="profile" :style="{ fontSize: '14px' }" />
+                <span>前端开发实习生</span></a-space
+              >
+            </div>
+            <div>
+              <a-space>
+                <a-icon type="compass" :style="{ fontSize: '14x' }" />
+                <span>电魂网络-发行线-技术运营中心-运营开发部-前端开发组</span></a-space
+              >
+            </div>
+            <div>
+              <a-space>
+                <a-icon type="environment" :style="{ fontSize: '14px' }" />
+                <span>浙江省杭州市</span></a-space
+              >
+            </div>
           </div>
-          <div v-if="currentTab === 'project'">
-            <a-space size="middle"
-              ><template v-for="project in projects">
-                <project-item v-bind="project"></project-item> </template
-            ></a-space>
+          <a-divider />
+          <div class="skill-info">
+            <a-tag v-for="item in technicalAbilities" style="margin: 4px" :key="item">{{
+              item
+            }}</a-tag>
+            <a-button size="small">+</a-button>
           </div>
-        </a-spin>
-      </a-card>
+          <a-divider />
+          <div class="team-work">
+            <div class="team-work-item" v-for="team in teams">
+              <a-space>
+                <a-avatar :size="32" :src="team.logo"></a-avatar>
+                <span>{{ team.title }}</span>
+              </a-space>
+            </div>
+          </div>
+        </a-card>
+      </div>
+      <div class="light-card">
+        <a-card
+          :bordered="false"
+          :tab-list="tabList"
+          :active-tab-key="currentTab"
+          @tabChange="handleTabChange"
+        >
+          <a-spin tip="加载中" :spinning="spinning">
+            <div v-if="currentTab === 'article'">
+              <template v-for="article in articles">
+                <article-item v-bind="article"></article-item>
+              </template>
+            </div>
+            <div v-if="currentTab === 'project'">
+              <a-space size="middle"
+                ><template v-for="project in projects">
+                  <project-item v-bind="project"></project-item> </template
+              ></a-space>
+            </div>
+          </a-spin>
+        </a-card>
+      </div>
     </div>
   </div>
 </template>
@@ -227,7 +229,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-.page-center {
+.coderwyh-pro-body {
   display: flex;
 }
 .ant-result {

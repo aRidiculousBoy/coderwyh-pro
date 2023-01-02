@@ -1,7 +1,7 @@
 <template>
   <div class="page-layout">
     <a-layout id="components-layout-demo-custom-trigger">
-      <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+      <a-layout-sider v-model="collapsed" :trigger="null" collapsible :width="240">
         <div class="logo" />
         <sidebar :collapsed="collapsed" />
       </a-layout-sider>
@@ -86,5 +86,11 @@ export default {
 .ant-layout-header {
   display: flex;
   align-items: center;
+}
+
+
+/deep/.ant-layout-content {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 </style>

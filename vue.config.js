@@ -27,6 +27,9 @@ module.exports = {
         '@service': resolve('src/service'),
         '@assets': resolve('src/assets')
       }
+    },
+    externals: {
+      webConfigs: 'webConfigs'
     }
   },
   // 根据环境变量输出到构建目录

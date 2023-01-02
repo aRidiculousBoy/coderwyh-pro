@@ -1,19 +1,21 @@
 <template>
   <div class="page-analysis">
-    <a-row :gutter="16">
-      <a-col :span="6">
-        <total-sale></total-sale>
-      </a-col>
-      <a-col :span="6">
-        <access-count></access-count>
-      </a-col>
-      <a-col :span="6">
-        <pay-count></pay-count>
-      </a-col>
-      <a-col :span="6">
-        <op />
-      </a-col>
-    </a-row>
+    <div class="coderwyh-pro-body">
+      <a-row :gutter="16">
+        <a-col :span="6">
+          <total-sale></total-sale>
+        </a-col>
+        <a-col :span="6">
+          <access-count></access-count>
+        </a-col>
+        <a-col :span="6">
+          <pay-count></pay-count>
+        </a-col>
+        <a-col :span="6">
+          <op />
+        </a-col>
+      </a-row>
+    </div>
   </div>
 </template>
 <script>
