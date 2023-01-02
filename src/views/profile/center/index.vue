@@ -90,30 +90,15 @@ export default {
     ProjectItem
   },
   data() {
-    const rngMotto = 'RNG'
-    const rngLogoSrc =
-      'https://gimg3.baidu.com/rel/src=https%3A%2F%2Fbkimg.cdn.bcebos.com%2Fsmart%2F94cad1c8a786c917e23977d9c73d70cf3bc75713-bkimg-process%2Cv_1%2Crw_1%2Crh_1%2Cmaxl_700&refer=http%3A%2F%2Fwww.baidu.com&app=2010&size=f200,200&n=0&g=0n&q=100&fmt=auto?sec=1666803600&t=350d5e20e057aedccff020fdf3834acd'
-
     const devDepartment = '运营开发部'
     const devLogo = 'https://vui-design.github.io/vui-design-pro/images/apps/bootstrap.png'
 
-    const lpl = 'LPL加油'
-    const lplLogo =
-      'https://gimg3.baidu.com/search/src=https%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fpic%2Fitem%2F0e2442a7d933c8954c079303de1373f082020048.jpg&refer=http%3A%2F%2Fwww.baidu.com&app=2021&size=w240&n=0&g=0n&q=75&fmt=auto?sec=1666803600&t=ad4b80e1e77854284840b3e7ac1d9a9b'
 
     // 团队
     const teams = [
       {
         title: devDepartment,
         logo: devLogo
-      },
-      {
-        title: lpl,
-        logo: lplLogo
-      },
-      {
-        title: rngMotto,
-        logo: rngLogoSrc
       }
     ]
     // 技能树
