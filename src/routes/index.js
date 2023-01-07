@@ -16,6 +16,7 @@ const Settings = () => import('@views/profile/settings')
 // 列表页组件
 const QueryTable = () => import('@views/list/table')
 const CardList = () => import('@views/list/card-list')
+const BasicList = () => import('@views/list/basic-list')
 
 // 用于测试的组件
 const Jser = () => import('@views/test/jser')
@@ -85,6 +86,16 @@ export const asyncRouterMap = [
     },
     children: [
       {
+        name: 'BasicList',
+        path: '/list/basic',
+        component: BasicList,
+        meta: {
+          title: '标准列表',
+          hasSubMenu: false,
+          icon: 'code-sandbox'
+        }
+      },
+      {
         name: 'QueryTable',
         path: '/list/table',
         component: QueryTable,
@@ -95,7 +106,7 @@ export const asyncRouterMap = [
         }
       },
       {
-        name: 'Card-List',
+        name: 'CardList',
         path: '/list/card-list',
         component: CardList,
         meta: {

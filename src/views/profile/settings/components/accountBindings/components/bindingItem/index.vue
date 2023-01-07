@@ -59,5 +59,8 @@ export default {
       margin-top: 8px;
     }
   }
+  .action {
+    margin-right: 24px;
+  }
 }
 </style>
