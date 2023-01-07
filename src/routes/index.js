@@ -18,6 +18,10 @@ const QueryTable = () => import('@views/list/table')
 const CardList = () => import('@views/list/card-list')
 const BasicList = () => import('@views/list/basic-list')
 
+// 表单页组件
+const StandardForm = () => import('@views/form/standard-form')
+const StepForm = () => import('@views/form/step-form')
+
 // 用于测试的组件
 const Jser = () => import('@views/test/jser')
 
@@ -107,7 +111,7 @@ export const asyncRouterMap = [
       },
       {
         name: 'CardList',
-        path: '/list/card-list',
+        path: '/list/card',
         component: CardList,
         meta: {
           title: '卡片列表',
@@ -115,6 +119,37 @@ export const asyncRouterMap = [
           icon: 'appstore'
         }
       }
+    ]
+  },
+  {
+    name: 'Form',
+    path: '/form',
+    redirect: '/form/standard',
+    component: Layout,
+    meta: {
+      title: '表单页',
+      hasSubMenu: true,
+      icon: 'fire'
+    },
+    children: [
+      {
+        name: 'StandardForm',
+        path: '/form/standard',
+        component: StandardForm,
+        meta: {
+          title: '基础表单',
+          icon: 'form'
+        }
+      },
+      {
+        name: 'StepForm',
+        path: '/form/step',
+        component: StepForm,
+        meta: {
+          title: '分步表单',
+          icon: 'build'
+        }
+      },
     ]
   },
   {

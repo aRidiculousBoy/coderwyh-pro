@@ -36,7 +36,7 @@ export default {
     },
     callback: {
       required: true
-    }
+    } 
   },
   data() {
     return {
